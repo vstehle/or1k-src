@@ -112,7 +112,7 @@ LINK = $(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) \
 	--mode=link $(CCLD) $(AM_CFLAGS) $(CFLAGS) $(AM_LDFLAGS) \
 	$(LDFLAGS) -o $@
 SOURCES = $(gprof_SOURCES)
-INFO_DEPS = gprof.info
+#INFO_DEPS = gprof.info
 am__TEXINFO_TEX_DIR = $(srcdir)/../texinfo
 DVIS = gprof.dvi
 PDFS = gprof.pdf
@@ -335,12 +335,12 @@ gprof_TEXINFOS = config.texi
 man_MANS = gprof.1
 AM_MAKEINFOFLAGS = -I "$(srcdir)" -I "$(top_srcdir)/../bfd/doc" -I ../bfd/doc
 TEXI2DVI = texi2dvi -I "$(srcdir)" -I "$(top_srcdir)/../bfd/doc" -I ../bfd/doc
-MAINTAINERCLEANFILES = gprof.info
+#MAINTAINERCLEANFILES = gprof.info
 
 # Automake 1.9 will only build info files in the objdir if they are
 # mentioned in DISTCLEANFILES.  It doesn't have to be unconditional,
 # though, so we use a bogus condition.
-@GENINSRC_NEVER_TRUE@DISTCLEANFILES = gprof.info
+#@GENINSRC_NEVER_TRUE@DISTCLEANFILES = gprof.info
 all: $(BUILT_SOURCES) gconfig.h
 	$(MAKE) $(AM_MAKEFLAGS) all-recursive
 
@@ -508,23 +508,23 @@ clean-libtool:
 distclean-libtool:
 	-rm -f libtool config.lt
 
-gprof.info: gprof.texi $(gprof_TEXINFOS)
-	restore=: && backupdir="$(am__leading_dot)am$$$$" && \
-	rm -rf $$backupdir && mkdir $$backupdir && \
-	if ($(MAKEINFO) --version) >/dev/null 2>&1; then \
-	  for f in $@ $@-[0-9] $@-[0-9][0-9] $(@:.info=).i[0-9] $(@:.info=).i[0-9][0-9]; do \
-	    if test -f $$f; then mv $$f $$backupdir; restore=mv; else :; fi; \
-	  done; \
-	else :; fi && \
-	if $(MAKEINFO) $(AM_MAKEINFOFLAGS) $(MAKEINFOFLAGS) -I $(srcdir) \
-	 -o $@ `test -f 'gprof.texi' || echo '$(srcdir)/'`gprof.texi; \
-	then \
-	  rc=0; \
-	else \
-	  rc=$$?; \
-	  $$restore $$backupdir/* `echo "./$@" | sed 's|[^/]*$$||'`; \
-	fi; \
-	rm -rf $$backupdir; exit $$rc
+#gprof.info: gprof.texi $(gprof_TEXINFOS)
+#	restore=: && backupdir="$(am__leading_dot)am$$$$" && \
+#	rm -rf $$backupdir && mkdir $$backupdir && \
+#	if ($(MAKEINFO) --version) >/dev/null 2>&1; then \
+#	  for f in $@ $@-[0-9] $@-[0-9][0-9] $(@:.info=).i[0-9] $(@:.info=).i[0-9][0-9]; do \
+#	    if test -f $$f; then mv $$f $$backupdir; restore=mv; else :; fi; \
+#	  done; \
+#	else :; fi && \
+#	if $(MAKEINFO) $(AM_MAKEINFOFLAGS) $(MAKEINFOFLAGS) -I $(srcdir) \
+#	 -o $@ `test -f 'gprof.texi' || echo '$(srcdir)/'`gprof.texi; \
+#	then \
+#	  rc=0; \
+#	else \
+#	  rc=$$?; \
+#	  $$restore $$backupdir/* `echo "./$@" | sed 's|[^/]*$$||'`; \
+#	fi; \
+#	rm -rf $$backupdir; exit $$rc
 
 gprof.dvi: gprof.texi $(gprof_TEXINFOS) 
 	TEXINPUTS="$(am__TEXINFO_TEX_DIR)$(PATH_SEPARATOR)$$TEXINPUTS" \

@@ -82,7 +82,7 @@ CONFIG_CLEAN_VPATH_FILES =
 depcomp =
 am__depfiles_maybe =
 SOURCES =
-INFO_DEPS = as.info
+#INFO_DEPS = as.info
 TEXINFO_TEX = $(top_srcdir)/../texinfo/texinfo.tex
 am__TEXINFO_TEX_DIR = $(top_srcdir)/../texinfo
 DVIS = as.dvi
@@ -343,7 +343,8 @@ CPU_DOCS = \
 
 # This one isn't ready for prime time yet.  Not even a little bit.
 noinst_TEXINFOS = internals.texi
-MAINTAINERCLEANFILES = asconfig.texi as.info
+#MAINTAINERCLEANFILES = asconfig.texi as.info
+MAINTAINERCLEANFILES = asconfig.texi
 BASEDIR = $(srcdir)/../..
 BFDDIR = $(BASEDIR)/bfd
 CONFIG_STATUS_DEPENDENCIES = $(BFDDIR)/configure.in
@@ -351,7 +352,7 @@ CONFIG_STATUS_DEPENDENCIES = $(BFDDIR)/configure.in
 # Automake 1.9 will only build info files in the objdir if they are
 # mentioned in DISTCLEANFILES.  It doesn't have to be unconditional,
 # though, so we use a bogus condition.
-@GENINSRC_NEVER_TRUE@DISTCLEANFILES = as.info
+#@GENINSRC_NEVER_TRUE@DISTCLEANFILES = as.info
 all: all-am
 
 .SUFFIXES:
@@ -393,23 +394,23 @@ mostlyclean-libtool:
 clean-libtool:
 	-rm -rf .libs _libs
 
-as.info: as.texinfo $(as_TEXINFOS)
-	restore=: && backupdir="$(am__leading_dot)am$$$$" && \
-	rm -rf $$backupdir && mkdir $$backupdir && \
-	if ($(MAKEINFO) --version) >/dev/null 2>&1; then \
-	  for f in $@ $@-[0-9] $@-[0-9][0-9] $(@:.info=).i[0-9] $(@:.info=).i[0-9][0-9]; do \
-	    if test -f $$f; then mv $$f $$backupdir; restore=mv; else :; fi; \
-	  done; \
-	else :; fi && \
-	if $(MAKEINFO) $(AM_MAKEINFOFLAGS) $(MAKEINFOFLAGS) -I $(srcdir) \
-	 -o $@ `test -f 'as.texinfo' || echo '$(srcdir)/'`as.texinfo; \
-	then \
-	  rc=0; \
-	else \
-	  rc=$$?; \
-	  $$restore $$backupdir/* `echo "./$@" | sed 's|[^/]*$$||'`; \
-	fi; \
-	rm -rf $$backupdir; exit $$rc
+#as.info: as.texinfo $(as_TEXINFOS)
+#	restore=: && backupdir="$(am__leading_dot)am$$$$" && \
+#	rm -rf $$backupdir && mkdir $$backupdir && \
+#	if ($(MAKEINFO) --version) >/dev/null 2>&1; then \
+#	  for f in $@ $@-[0-9] $@-[0-9][0-9] $(@:.info=).i[0-9] $(@:.info=).i[0-9][0-9]; do \
+#	    if test -f $$f; then mv $$f $$backupdir; restore=mv; else :; fi; \
+#	  done; \
+#	else :; fi && \
+#	if $(MAKEINFO) $(AM_MAKEINFOFLAGS) $(MAKEINFOFLAGS) -I $(srcdir) \
+#	 -o $@ `test -f 'as.texinfo' || echo '$(srcdir)/'`as.texinfo; \
+#	then \
+#	  rc=0; \
+#	else \
+#	  rc=$$?; \
+#	  $$restore $$backupdir/* `echo "./$@" | sed 's|[^/]*$$||'`; \
+#	fi; \
+#	rm -rf $$backupdir; exit $$rc
 
 as.dvi: as.texinfo $(as_TEXINFOS) 
 	TEXINPUTS="$(am__TEXINFO_TEX_DIR)$(PATH_SEPARATOR)$$TEXINPUTS" \

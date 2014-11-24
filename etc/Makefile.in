@@ -58,41 +58,43 @@ TEXIDIR = $(srcdir)/../texinfo
 #### Host, target, and site specific Makefile fragments come in here.
 ###
 
-INFOFILES = standards.info configure.info
+#INFOFILES = standards.info configure.info
 DVIFILES = standards.dvi configure.dvi
 PDFFILES = standards.pdf configure.pdf
 HTMLFILES = standards.html configure.html
 
-all: info
-install install-strip: install-info
+#all: info
+all:
+#install install-strip: install-info
+install install-strip:
 
 uninstall:
 
-info:
-	for f in $(INFOFILES); do \
-	  if test -f $(srcdir)/`echo $$f | sed -e 's/.info$$/.texi/'`; then \
-	    if $(MAKE) "MAKEINFO=$(MAKEINFO)" $$f; then \
-	      true; \
-	    else \
-	      exit 1; \
-	    fi; \
-	  fi; \
-	done
+#info:
+#	for f in $(INFOFILES); do \
+#	  if test -f $(srcdir)/`echo $$f | sed -e 's/.info$$/.texi/'`; then \
+#	    if $(MAKE) "MAKEINFO=$(MAKEINFO)" $$f; then \
+#	      true; \
+#	    else \
+#	      exit 1; \
+#	    fi; \
+#	  fi; \
+#	done
 
-install-info: info
-	$(SHELL) $(srcdir)/../mkinstalldirs $(DESTDIR)$(infodir)
-	if test ! -f standards.info; then cd $(srcdir); fi; \
-	if test -f standards.info; then \
-	  for i in standards.info*; do \
-	    $(INSTALL_DATA) $$i $(DESTDIR)$(infodir)/$$i; \
-	  done; \
-	fi
-	if test ! -f configure.info; then cd $(srcdir); fi; \
-	if test -f configure.info; then \
-	  for i in configure.info*; do \
-	    $(INSTALL_DATA) $$i $(DESTDIR)$(infodir)/$$i; \
-	  done; \
-	fi
+#install-info: info
+#	$(SHELL) $(srcdir)/../mkinstalldirs $(DESTDIR)$(infodir)
+#	if test ! -f standards.info; then cd $(srcdir); fi; \
+#	if test -f standards.info; then \
+#	  for i in standards.info*; do \
+#	    $(INSTALL_DATA) $$i $(DESTDIR)$(infodir)/$$i; \
+#	  done; \
+#	fi
+#	if test ! -f configure.info; then cd $(srcdir); fi; \
+#	if test -f configure.info; then \
+#	  for i in configure.info*; do \
+#	    $(INSTALL_DATA) $$i $(DESTDIR)$(infodir)/$$i; \
+#	  done; \
+#	fi
 
 html:
 	for f in $(HTMLFILES); do \
@@ -157,8 +159,8 @@ install-pdf: pdf
 	  done; \
 	fi
 
-standards.info: $(srcdir)/standards.texi $(srcdir)/make-stds.texi
-	$(MAKEINFO) --no-split -I$(srcdir) -o standards.info $(srcdir)/standards.texi
+#standards.info: $(srcdir)/standards.texi $(srcdir)/make-stds.texi
+#	$(MAKEINFO) --no-split -I$(srcdir) -o standards.info $(srcdir)/standards.texi
 
 standards.html: $(srcdir)/standards.texi $(srcdir)/make-stds.texi
 	$(TEXI2HTML) --no-split -I$(srcdir) -o standards.html $(srcdir)/standards.texi

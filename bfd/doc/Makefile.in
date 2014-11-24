@@ -56,7 +56,7 @@ target_triplet = @target@
 # Automake 1.9 will only build info files in the objdir if they are
 # mentioned in DISTCLEANFILES.  It doesn't have to be unconditional,
 # though, so we use a bogus condition.
-@GENINSRC_NEVER_TRUE@am__append_1 = bfd.info
+#@GENINSRC_NEVER_TRUE@am__append_1 = bfd.info
 subdir = doc
 DIST_COMMON = $(srcdir)/Makefile.in $(srcdir)/Makefile.am \
 	$(bfd_TEXINFOS)
@@ -86,7 +86,7 @@ CONFIG_CLEAN_VPATH_FILES =
 depcomp =
 am__depfiles_maybe =
 SOURCES =
-INFO_DEPS = bfd.info
+#INFO_DEPS = bfd.info
 TEXINFO_TEX = $(top_srcdir)/../texinfo/texinfo.tex
 am__TEXINFO_TEX_DIR = $(top_srcdir)/../texinfo
 DVIS = bfd.dvi
@@ -394,7 +394,8 @@ MOSTLYCLEANFILES = $(MKDOC) *.o
 CLEANFILES = *.p *.ip
 DISTCLEANFILES = bfd.?? bfd.??? bfd.h libbfd.h libcoff.h texput.log \
 	$(am__append_1)
-MAINTAINERCLEANFILES = $(DOCFILES) bfd.info
+#MAINTAINERCLEANFILES = $(DOCFILES) bfd.info
+MAINTAINERCLEANFILES = $(DOCFILES)
 all: all-am
 
 .SUFFIXES:
@@ -436,23 +437,23 @@ mostlyclean-libtool:
 clean-libtool:
 	-rm -rf .libs _libs
 
-bfd.info: bfd.texinfo $(bfd_TEXINFOS)
-	restore=: && backupdir="$(am__leading_dot)am$$$$" && \
-	rm -rf $$backupdir && mkdir $$backupdir && \
-	if ($(MAKEINFO) --version) >/dev/null 2>&1; then \
-	  for f in $@ $@-[0-9] $@-[0-9][0-9] $(@:.info=).i[0-9] $(@:.info=).i[0-9][0-9]; do \
-	    if test -f $$f; then mv $$f $$backupdir; restore=mv; else :; fi; \
-	  done; \
-	else :; fi && \
-	if $(MAKEINFO) $(AM_MAKEINFOFLAGS) $(MAKEINFOFLAGS) -I $(srcdir) \
-	 -o $@ `test -f 'bfd.texinfo' || echo '$(srcdir)/'`bfd.texinfo; \
-	then \
-	  rc=0; \
-	else \
-	  rc=$$?; \
-	  $$restore $$backupdir/* `echo "./$@" | sed 's|[^/]*$$||'`; \
-	fi; \
-	rm -rf $$backupdir; exit $$rc
+#bfd.info: bfd.texinfo $(bfd_TEXINFOS)
+#	restore=: && backupdir="$(am__leading_dot)am$$$$" && \
+#	rm -rf $$backupdir && mkdir $$backupdir && \
+#	if ($(MAKEINFO) --version) >/dev/null 2>&1; then \
+#	  for f in $@ $@-[0-9] $@-[0-9][0-9] $(@:.info=).i[0-9] $(@:.info=).i[0-9][0-9]; do \
+#	    if test -f $$f; then mv $$f $$backupdir; restore=mv; else :; fi; \
+#	  done; \
+#	else :; fi && \
+#	if $(MAKEINFO) $(AM_MAKEINFOFLAGS) $(MAKEINFOFLAGS) -I $(srcdir) \
+#	 -o $@ `test -f 'bfd.texinfo' || echo '$(srcdir)/'`bfd.texinfo; \
+#	then \
+#	  rc=0; \
+#	else \
+#	  rc=$$?; \
+#	  $$restore $$backupdir/* `echo "./$@" | sed 's|[^/]*$$||'`; \
+#	fi; \
+#	rm -rf $$backupdir; exit $$rc
 
 bfd.dvi: bfd.texinfo $(bfd_TEXINFOS) 
 	TEXINPUTS="$(am__TEXINFO_TEX_DIR)$(PATH_SEPARATOR)$$TEXINPUTS" \
